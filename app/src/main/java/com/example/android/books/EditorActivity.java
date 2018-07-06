@@ -15,7 +15,6 @@
  */
 package com.example.android.books;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -79,7 +78,6 @@ public class EditorActivity extends AppCompatActivity implements
         }
     };
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,9 +107,9 @@ public class EditorActivity extends AppCompatActivity implements
         }
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_pet_name);
-        mPriceEditText = (EditText) findViewById(R.id.edit_pet_breed);
-        mQuantityEditText = (EditText) findViewById(R.id.edit_pet_weight);
+        mNameEditText = (EditText) findViewById(R.id.edit_book_name);
+        mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
+        mQuantityEditText = (EditText) findViewById(R.id.edit_quantity);
         mSupplierNameEditText = (EditText) findViewById(R.id.edit_supplier_name);
         mSupplierPhoneEditText = (EditText) findViewById(R.id.edit_supplier_phone);
 
@@ -124,45 +122,6 @@ public class EditorActivity extends AppCompatActivity implements
         mSupplierNameEditText.setOnTouchListener(mTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
     }
-
-//    /**
-//     * Setup the dropdown spinner that allows the user to select the gender of the pet.
-//     */
-//    private void setupSpinner() {
-//        // Create adapter for spinner. The list options are from the String array it will use
-//        // the spinner will use the default layout
-//        ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
-//                R.array.array_gender_options, android.R.layout.simple_spinner_item);
-//
-//        // Specify dropdown layout style - simple list view with 1 item per line
-//        genderSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-//
-//        // Apply the adapter to the spinner
-//        mGenderSpinner.setAdapter(genderSpinnerAdapter);
-//
-//        // Set the integer mSelected to the constant values
-//        mGenderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selection = (String) parent.getItemAtPosition(position);
-//                if (!TextUtils.isEmpty(selection)) {
-//                    if (selection.equals(getString(R.string.gender_male))) {
-//                        mGender = BookContract.BookEntry.GENDER_MALE;
-//                    } else if (selection.equals(getString(R.string.gender_female))) {
-//                        mGender = BookContract.BookEntry.GENDER_FEMALE;
-//                    } else {
-//                        mGender = BookContract.BookEntry.GENDER_UNKNOWN;
-//                    }
-//                }
-//            }
-//
-//            // Because AdapterView is an abstract class, onNothingSelected must be defined
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                mGender = BookContract.BookEntry.GENDER_UNKNOWN;
-//            }
-//        });
-//    }
 
     /**
      * Get user input from editor and save book into database.
@@ -192,18 +151,11 @@ public class EditorActivity extends AppCompatActivity implements
         ContentValues values = new ContentValues();
         values.put(BookContract.BookEntry.COLUMN_PRODUCT_NAME, nameString);
         values.put(BookContract.BookEntry.COLUMN_PRICE, priceString);
-        values.put(BookEntry.COLUMN_QUANTITY, quantityString);
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
-        values.put(BookEntry.COLUMN_SUPPLIER_PHONE,supplierPhoneString);
-//        // If the weight is not provided by the user, don't try to parse the string into an
-//        // integer value. Use 0 by default.
-//        int weight = 0;
-//        if (!TextUtils.isEmpty(quantityString)) {
-//            weight = Integer.parseInt(quantityString);
-//        }
-//        values.put(BookEntry.COLUMN_SUPPLIER_NAME, weight);
+        values.put(BookContract.BookEntry.COLUMN_QUANTITY, quantityString);
+        values.put(BookContract.BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
+        values.put(BookContract.BookEntry.COLUMN_SUPPLIER_PHONE,supplierPhoneString);
 
-        // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
+      // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
         if (mCurrentBookUri == null) {
             // This is a NEW book, so insert a new pet into the provider,
             // returning the content URI for the new book.
@@ -384,22 +336,7 @@ public class EditorActivity extends AppCompatActivity implements
             mPriceEditText.setText(price);
             mSupplierNameEditText.setText(supplierName);
             mSupplierPhoneEditText.setText(supplierPhone);
-            mQuantityEditText.setText(quantity);
-
-//            // Gender is a dropdown spinner, so map the constant value from the database
-//            // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).
-//            // Then call setSelection() so that option is displayed on screen as the current selection.
-//            switch (quantity) {
-//                case BookEntry.GENDER_MALE:
-//                    mGenderSpinner.setSelection(1);
-//                    break;
-//                case BookEntry.GENDER_FEMALE:
-//                    mGenderSpinner.setSelection(2);
-//                    break;
-//                default:
-//                    mGenderSpinner.setSelection(0);
-//                    break;
-//            }
+            mQuantityEditText.setText(Integer.toString(quantity));
         }
     }
 

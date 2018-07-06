@@ -131,7 +131,7 @@ public class BookProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case BOOKS:
-                return insertPet(uri, contentValues);
+                return insertBook(uri, contentValues);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
@@ -141,17 +141,17 @@ public class BookProvider extends ContentProvider {
      * Insert a pet into the database with the given content values. Return the new content URI
      * for that specific row in the database.
      */
-    private Uri insertPet(Uri uri, ContentValues values) {
+    private Uri insertBook(Uri uri, ContentValues values) {
         // Check that the name is not null
         String name = values.getAsString(BookEntry.COLUMN_PRODUCT_NAME);
         if (name == null) {
-            throw new IllegalArgumentException("Pet requires a name");
+            throw new IllegalArgumentException("Book requires a name");
         }
 
         // Check that the quantity is valid
         Integer quantity = values.getAsInteger(BookEntry.COLUMN_QUANTITY);
         if (quantity == null) {
-            throw new IllegalArgumentException("Pet requires valid quantity");
+            throw new IllegalArgumentException("Bok requires valid quantity");
         }
 
 
@@ -181,14 +181,14 @@ public class BookProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case BOOKS:
-                return updatePet(uri, contentValues, selection, selectionArgs);
+                return updateBook(uri, contentValues, selection, selectionArgs);
             case BOOK_ID:
                 // For the BOOK_ID code, extract out the ID from the URI,
                 // so we know which row to update. Selection will be "_id=?" and selection
                 // arguments will be a String array containing the actual ID.
                 selection = BookContract.BookEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
-                return updatePet(uri, contentValues, selection, selectionArgs);
+                return updateBook(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
@@ -199,13 +199,13 @@ public class BookProvider extends ContentProvider {
      * specified in the selection and selection arguments (which could be 0 or 1 or more books).
      * Return the number of rows that were successfully updated.
      */
-    private int updatePet(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         // If the {@link BookEntry#COLUMN_PRODUCT_NAME} key is present,
         // check that the name value is not null.
         if (values.containsKey(BookContract.BookEntry.COLUMN_PRODUCT_NAME)) {
             String name = values.getAsString(BookContract.BookEntry.COLUMN_PRODUCT_NAME);
             if (name == null) {
-                throw new IllegalArgumentException("Pet requires a name");
+                throw new IllegalArgumentException("Book requires a name");
             }
         }
 
@@ -215,16 +215,6 @@ public class BookProvider extends ContentProvider {
             Integer gender = values.getAsInteger(BookContract.BookEntry.COLUMN_QUANTITY);
             if (gender == null) {
                 throw new IllegalArgumentException("Pet requires valid gender");
-            }
-        }
-
-        // If the {@link BookEntry#COLUMN_SUPPLIER_NAME} key is present,
-        // check that the weight value is valid.
-        if (values.containsKey(BookEntry.COLUMN_SUPPLIER_NAME)) {
-            // Check that the weight is greater than or equal to 0 kg
-            Integer weight = values.getAsInteger(BookEntry.COLUMN_SUPPLIER_NAME);
-            if (weight != null && weight < 0) {
-                throw new IllegalArgumentException("Pet requires valid weight");
             }
         }
 
