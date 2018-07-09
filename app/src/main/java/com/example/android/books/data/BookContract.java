@@ -91,7 +91,7 @@ public final class BookContract {
         /**
          * Price of the book.
          *
-         * Type: TEXT
+         * Type: INTEGER
          */
         public final static String COLUMN_PRICE = "price";
 
@@ -111,7 +111,7 @@ public final class BookContract {
         /**
          * Phone of the supplier.
          *
-         * Type: TEXT
+         * Type: INTEGER
          */
         public final static String COLUMN_SUPPLIER_PHONE = "phone";
 

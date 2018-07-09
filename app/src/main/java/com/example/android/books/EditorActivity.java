@@ -150,10 +150,26 @@ public class EditorActivity extends AppCompatActivity implements
         // and book attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(BookContract.BookEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(BookContract.BookEntry.COLUMN_PRICE, priceString);
-        values.put(BookContract.BookEntry.COLUMN_QUANTITY, quantityString);
         values.put(BookContract.BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
-        values.put(BookContract.BookEntry.COLUMN_SUPPLIER_PHONE,supplierPhoneString);
+
+        int price = 0;
+        if (!TextUtils.isEmpty(priceString)){
+            price = Integer.parseInt(priceString);
+        }
+        values.put(BookEntry.COLUMN_PRICE, price);
+
+        int quantity = 0;
+        if (!TextUtils.isEmpty(quantityString)){
+            quantity = Integer.parseInt(quantityString);
+        }
+        values.put(BookEntry.COLUMN_QUANTITY, quantity);
+
+        int phone = 0;
+        if (!TextUtils.isEmpty(supplierPhoneString)){
+            phone = Integer.parseInt(supplierPhoneString);
+        }
+        values.put(BookEntry.COLUMN_SUPPLIER_PHONE, phone);
+
 
       // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
         if (mCurrentBookUri == null) {
@@ -325,17 +341,17 @@ public class EditorActivity extends AppCompatActivity implements
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
-            String price = cursor.getString(priceColumnIndex);
+            int price = cursor.getInt(priceColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
             String supplierName = cursor.getString(supplierNameColumnIndex);
-            String supplierPhone = cursor.getString(supplierPhoneColumnIndex);
+            int supplierPhone = cursor.getInt(supplierPhoneColumnIndex);
 
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
-            mPriceEditText.setText(price);
+            mPriceEditText.setText(Integer.toString(price));
             mSupplierNameEditText.setText(supplierName);
-            mSupplierPhoneEditText.setText(supplierPhone);
+            mSupplierPhoneEditText.setText(Integer.toString(supplierPhone));
             mQuantityEditText.setText(Integer.toString(quantity));
         }
     }

@@ -62,20 +62,25 @@
 
 
         <!-- Input fields -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:paddingLeft="4dp">
 
             <!-- Price field -->
             <EditText
                 android:id="@+id/edit_book_price"
                 android:hint="@string/hint_book_price"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 style="@style/EditorFieldStyle" />
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/price_units"
+                android:text="@string/dollar"
+                style="@style/EditorUnitsStyle"/>
+
+        </RelativeLayout>
     </LinearLayout>
 
     <!-- Measurement category -->
@@ -137,7 +142,7 @@
             <EditText
                 android:id="@+id/edit_supplier_phone"
                 android:hint="hint supplier phone"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>

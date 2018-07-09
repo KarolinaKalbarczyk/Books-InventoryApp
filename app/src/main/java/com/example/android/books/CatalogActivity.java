@@ -109,17 +109,10 @@ public class CatalogActivity extends AppCompatActivity implements
         // and Harry's attributes are the values.
         ContentValues values = new ContentValues();
         values.put(BookContract.BookEntry.COLUMN_PRODUCT_NAME, "Harry Potter");
-        values.put(BookContract.BookEntry.COLUMN_PRICE, "10$");
+        values.put(BookContract.BookEntry.COLUMN_PRICE, 10);
         values.put(BookContract.BookEntry.COLUMN_QUANTITY, 2);
         values.put(BookContract.BookEntry.COLUMN_SUPPLIER_NAME, "John Smith");
-        values.put(BookContract.BookEntry.COLUMN_SUPPLIER_PHONE, "625 947 173");
-
-
-        // Insert a new row for Harry Potter into the provider using the ContentResolver.
-        // Use the {@link BookEntry#CONTENT_URI} to indicate that we want to insert
-        // into the books database table.
-        // Receive the new content URI that will allow us to access Harry's data in the future.
-        Uri newUri = getContentResolver().insert(BookContract.BookEntry.CONTENT_URI, values);
+        values.put(BookContract.BookEntry.COLUMN_SUPPLIER_PHONE, 625947173);
     }
 
     /**

@@ -17,14 +17,12 @@ package com.example.android.books;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.example.android.books.data.BookContract;
 import com.example.android.books.data.BookContract.BookEntry;
 
 /**
@@ -77,17 +75,17 @@ public class BookCursorAdapter extends CursorAdapter {
 
         // Find the columns of book attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRODUCT_NAME);
-        int priceColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_PRICE);
+        int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRICE);
 
         // Read the pet attributes from the Cursor for the current book
         String bookName = cursor.getString(nameColumnIndex);
         String bookPrice = cursor.getString(priceColumnIndex);
 
-        // If the pet price is empty string or null, then use some default text
-        // that says "Unknown price", so the TextView isn't blank.
-        if (TextUtils.isEmpty(bookPrice)) {
-            bookPrice = context.getString(R.string.unknown_price);
-        }
+//        // If the pet price is empty string or null, then use some default text
+//        // that says "Unknown price", so the TextView isn't blank.
+//        if (TextUtils.isEmpty(bookPrice)) {
+//            bookPrice = context.getString(R.string.unknown_price);
+//        }
 
         // Update the TextViews with the attributes for the current book
         nameTextView.setText(bookName);
