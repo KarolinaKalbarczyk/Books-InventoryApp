@@ -31,10 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
 
 import com.example.android.books.data.BookContract;
 import com.example.android.books.data.BookContract.BookEntry;
@@ -113,7 +110,7 @@ public class CatalogActivity extends AppCompatActivity implements
         ContentValues values = new ContentValues();
         values.put(BookContract.BookEntry.COLUMN_PRODUCT_NAME, "Harry Potter");
         values.put(BookContract.BookEntry.COLUMN_PRICE, 10);
-        values.put(BookContract.BookEntry.COLUMN_QUANTITY, 0);
+        values.put(BookContract.BookEntry.COLUMN_QUANTITY, 2);
         values.put(BookContract.BookEntry.COLUMN_SUPPLIER_NAME, "John Smith");
         values.put(BookContract.BookEntry.COLUMN_SUPPLIER_PHONE, 625947173);
     }

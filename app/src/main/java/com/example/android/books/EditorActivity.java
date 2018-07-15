@@ -32,7 +32,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -63,12 +62,6 @@ public class EditorActivity extends AppCompatActivity implements
     private EditText mSupplierNameEditText;
 
     private EditText mSupplierPhoneEditText;
-
-    private Button mIncreaseButton;
-
-    private Button mDecreaseButton;
-
-    private Button mCallButton;
 
     /** Boolean flag that keeps track of whether the book has been edited (true) or not (false) */
     private boolean mBookHasChanged = false;
@@ -119,47 +112,6 @@ public class EditorActivity extends AppCompatActivity implements
         mQuantityEditText = (EditText) findViewById(R.id.edit_quantity);
         mSupplierNameEditText = (EditText) findViewById(R.id.edit_supplier_name);
         mSupplierPhoneEditText = (EditText) findViewById(R.id.edit_supplier_phone);
-        mIncreaseButton = (Button) findViewById(R.id.plus);
-        mDecreaseButton = (Button) findViewById(R.id.minus);
-        mCallButton = (Button) findViewById(R.id.call);
-
-        mCallButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String phone = mSupplierPhoneEditText.getText().toString().trim();
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + phone));
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-            }
-        });
-
-        mIncreaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int quantity = 0;
-                if (!TextUtils.isEmpty(mQuantityEditText.getText().toString())) {
-                    quantity = Integer.parseInt(mQuantityEditText.getText().toString());
-                }
-                quantity++;
-                mQuantityEditText.setText("" + quantity);
-            }
-        });
-
-        mDecreaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int quantity = 0;
-                if (!TextUtils.isEmpty(mQuantityEditText.getText().toString())) {
-                    quantity = Integer.parseInt(mQuantityEditText.getText().toString());
-                }
-                if (quantity > 0) {
-                    quantity--;
-                }
-                mQuantityEditText.setText("" + quantity);
-            }
-        });
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes

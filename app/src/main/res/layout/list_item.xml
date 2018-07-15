@@ -11,24 +11,12 @@
      limitations under the License.
 -->
 <!-- Layout for a single list item in the list of books -->
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:descendantFocusability="blocksDescendants"
     android:padding="@dimen/activity_margin">
-
-    <Button
-        android:background="#81C784"
-        android:id="@+id/addBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add a book"
-        android:textSize="10sp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"/>
-
 
     <TextView
         android:id="@+id/name"
@@ -38,18 +26,6 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#2B3D4D"  />
 
-    <LinearLayout
-        android:id="@+id/layoutPrice"
-        android:layout_below="@id/name"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="Price:"
-            style="@style/CategoryStyle" />
-
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
@@ -57,29 +33,4 @@
         android:fontFamily="sans-serif"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="#AEB6BD"  />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_below="@id/layoutPrice"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-        android:text="Quantity:"
-        style="@style/CategoryStyle"/>
-
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD"/>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>
